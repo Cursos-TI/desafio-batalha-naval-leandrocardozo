@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 // FUNÇÃO CRIADA PARA IMPRIMIR A MATRIZ
 void imprimirMatriz(int linhas, int colunas, int matriz[linhas][colunas])
 {
@@ -25,14 +24,17 @@ void imprimirMatriz(int linhas, int colunas, int matriz[linhas][colunas])
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
-int main() {
+int main()
+{
 
     // Nível Novato - Posicionamento dos Navios
     // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
-    int navio1[3] = {3, 3, 3};
-    int navio2[3] = {3, 3, 3};
+    int tamanhoDoNavio = 2;
+    int navioHorizontal[3] = {3, 3, 3};
+    int navioVertical[3] = {3, 3, 3};
+    int navioDiagonal[3] = {3, 3, 3};
 
     int tabuleiro[10][10];
 
@@ -50,25 +52,30 @@ int main() {
     }
 
     // LOOP FOR INSERINDO OS NAVIOS VERTICALMENTE E HORIZONTALMENTE
-    for (int i = 0; i <= 2; i++)
-    {
-        tabuleiro[2][i + 5] = navio1[i];
-        tabuleiro[3 + i][1] = navio2[i];
-    }
+    // LOOP FOR INSERINDO OS NAVIOS VERTICALMENTE E HORIZONTALMENTE
 
-    // CHAMADA DA FUNÇÃO PARA IMPRESSÃO ATUALIZADA DA MATRIZ
-    imprimirMatriz(10, 10, tabuleiro);
+    /*DESCOMENTE ESSE TRECHO DE CÓDIGO PARA VISUALIZAR A INSERÇÃO DE VALORES
+    NA HORIZONTAL,VERTICAL E DIAGONAL*/
 
-    printf("\n\n\n");
+    /* for (int i = 0; i <= tamanhoDoNavio; i++)
+     {
+
+         //a linha permanece a mesma e a coluna acrescenta o numero 3
+         tabuleiro[1][1+i] = navioHorizontal[i];
+         //a coluna permanece a mesma e a linha continua inserindo o 3
+         tabuleiro[1+i][5] = navioVertical[i];
+         //tanto linhas como colunas parte do mesmo ponto e acrescentam + 1
+         tabuleiro[3+i][3+i] = navioDiagonal[i];
+         tabuleiro[2+i][7+i] = navioDiagonal[i];
+         // diagonal inversa, o for acrescenta mais uma linha, mas a coluna diminui, retrocede.
+         tabuleiro[7 + i][8-i] = navioVertical[i];
+
+     } */
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
     // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
-
-
-
-    
 
     // Nível Mestre - Habilidades Especiais com Matrizes
     // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
@@ -80,7 +87,7 @@ int main() {
     // 0 0 1 0 0
     // 0 1 1 1 0
     // 1 1 1 1 1
-    
+
     // Exemplo para habilidade em octaedro:
     // 0 0 1 0 0
     // 0 1 1 1 0
@@ -90,6 +97,11 @@ int main() {
     // 0 0 1 0 0
     // 1 1 1 1 1
     // 0 0 1 0 0
+
+    // CHAMADA DA FUNÇÃO PARA IMPRESSÃO ATUALIZADA DA MATRIZ
+    imprimirMatriz(10, 10, tabuleiro);
+
+    printf("\n\n\n");
 
     return 0;
 }
