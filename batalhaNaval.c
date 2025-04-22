@@ -82,6 +82,70 @@ int main()
     // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
     // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
 
+    // CONE
+    int linhaOrigemCone = 0;
+    int colunaOrigemCone = 2;
+
+    for (int i = 0; i <= tamanhoDoNavio; i++)
+    {
+        for (int j = colunaOrigemCone - i; j <= colunaOrigemCone + i; j++)
+        {
+            tabuleiro[linhaOrigemCone + i][j] = navioDiagonal[i];
+        }
+    }
+
+    // CRUZ
+    int linhaOrigemCruz = 4;
+    int colunaOrigemCruz = 7;
+    int tamanhoCruz = 3;
+
+    for (int i = -tamanhoCruz + 1; i <= tamanhoCruz - 1; i++)
+    {
+        int indiceArrayPositivo = abs(i);
+        tabuleiro[linhaOrigemCruz][colunaOrigemCruz + i] = navioHorizontal[indiceArrayPositivo];
+        tabuleiro[linhaOrigemCruz + i][colunaOrigemCruz] = navioVertical[indiceArrayPositivo];
+    }
+
+    // OCTAEDRO
+
+    int tamanhoOctaedro = 2;  // Altura/largura do "meio" do octaedro
+    int linhaOrigemOcta = 7;  // Linha 7
+    int colunaOrigemOcta = 2; // Coluna 2
+
+    // Desenhar o octaedro
+    for (int i = -tamanhoOctaedro; i <= tamanhoOctaedro; i++)
+    {
+        int alcance = tamanhoOctaedro - abs(i);
+        for (int j = -alcance; j <= alcance; j++)
+        {
+            int linha = linhaOrigemOcta + i;
+            int coluna = colunaOrigemOcta + j;
+
+            // Garantir que não vamos sair da matriz
+            if (linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas)
+            {
+                tabuleiro[linha][coluna] = 3;
+            }
+        }
+    }
+
+    // PONTO DE HABILIDADE
+    // DEFINE O CENTRO DA CRUZ.
+    int linhaHabilidade = 3;
+    int colunaHabilidade = 3;
+    int tamanhoHabilidade = 1; // define o "alcance" da cruz
+
+    for (int i = -tamanhoHabilidade; i <= tamanhoHabilidade; i++)
+    {
+        // Parte horizontal da cruz
+        if (colunaHabilidade + i >= 0 && colunaHabilidade + i < colunas)
+            tabuleiro[linhaHabilidade][colunaHabilidade + i] = 5;
+
+        // Parte vertical da cruz
+        if (linhaHabilidade + i >= 0 && linhaHabilidade + i < linhas)
+            tabuleiro[linhaHabilidade + i][colunaHabilidade] = 5;
+    }
+
     // Exemplos de exibição das habilidades:
     // Exemplo para habilidade em cone:
     // 0 0 1 0 0
